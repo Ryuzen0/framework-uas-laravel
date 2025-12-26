@@ -1,0 +1,222 @@
+/* Css Contact */
+:root {
+    --primary-color: #0a1a44;
+    --secondary-color: #d4af37;
+    --tertiary-color: #ffffff;
+    --quaternary-color: #fffdf7;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+footer h2 {
+    font-family: "Mea Culpa", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3.2rem;
+}
+
+footer a {
+    font-family: "times new roman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+/* Css Footer */
+.footer-distributed {
+    background-color: var(--primary-color);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 50px 50px 60px 50px;
+    margin-top: 80px;
+    position: static;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+    width: 30%;
+}
+
+.footer-distributed h3 {
+    font-family: "Mea Culpa", cursive;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+    font-family: "times new roman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-distributed .footer-company-name {
+    font-family: "times new roman", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+    width: 35%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+.footer-distributed .footer-center i.fa-location-dot {
+    font-size: 20px;
+    line-height: 38px;
+}
+.footer-distributed .footer-center i.fa-address-book {
+    font-size: 20px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    font-family: "times new roman", sans-serif;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+.footer-distributed .footer-center p a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: white;
+    display: block;
+    transition: 0.8s;
+}
+
+.footer-distributed .footer-center p a:hover::after {
+    width: 100%;
+}
+
+.footer-distributed .footer-center span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: "Mea Culpa", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+    width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    font-size: 13px;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: "Mea Culpa", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+    transition: all 0.6s;
+}
+
+.footer-distributed .footer-icons a:hover {
+    background-color: #3f71ea;
+}
+
+.footer-links a:hover {
+    color: #3f71ea;
+}
+
+@media (max-width: 880px) {
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+}
+/* Akhir css footer */

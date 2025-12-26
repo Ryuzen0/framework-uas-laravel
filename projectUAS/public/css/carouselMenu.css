@@ -1,0 +1,51 @@
+:root {
+    --primary-color: #0a1a44;
+    --secondary-color: #d4af37;
+    --tertiary-color: #ffffff;
+    --quaternary-color: #fffdf7;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Dark overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* <-- adjust darkness here */
+}
+
+/* Centered text */
+.carousel-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.carousel-text h1 {
+    font-family: "Mea Culpa", cursive;
+    font-size: 4rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+.carousel-text p {
+    font-size: 1.5rem;
+    font-family: "Times New Roman", serif;
+}
