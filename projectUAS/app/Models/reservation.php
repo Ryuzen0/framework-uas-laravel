@@ -7,16 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class reservation extends Model
 {
-     protected $table = 'reservations'; // nama tabel
+    protected $table = 'reservations'; // nama tabel
     protected $fillable = [
-        'name',
-        'email',
-        'address',
-        'phone_number',
-        'guest',
-        'date',
-        'time',
-        'desc'
-    ];
+    'user_id',
+    'name',
+    'email',
+    'guest',
+    'date',
+    'time',
+    'address',
+    'phone_number',
+    'desc',
+    'payment_status',
+    'reservation_status',
+];
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -61,12 +61,12 @@
                 <div class="col-md-6">
                     <label for="name" class="form-label">Your Name</label>
                     <input type="text" class="form-control" id="name" placeholder="Yourname" name="name"
-                        required>
+                        value="{{ auth()->user()->name }}" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="email" class="form-label">Email Address</label>
                     <input type="email" class="form-control" id="email" placeholder="youremail@gmail.com"
-                        name="email" required>
+                        name="email" value="{{ auth()->user()->email }}" readonly>
                 </div>
                 <div class="col-md-6">
                     <label for="address" class="form-label">Address</label>

@@ -3,66 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\reservation;
-use App\Http\Requests\StorereservationRequest;
-use App\Http\Requests\UpdatereservationRequest;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+     public function index()
     {
-        //
+        $reservations = Reservation::where('reservation_status', 'ongoing')
+            ->orderBy('date', 'asc')
+            ->get();
+
+        return view('admin.reservations.index', compact('reservations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('reserve');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatereservationRequest $request, reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(reservation $reservation)
-    {
-        //
-    }
-
-
 
     public function store(Request $request)
     {
@@ -77,9 +36,7 @@ class ReservationController extends Controller
             'desc'          => 'nullable|string',
         ]);
 
-
         $maxGuests = 10;
-
 
         $currentGuests = DB::table('reservations')
             ->where('date', $validated['date'])
@@ -92,15 +49,26 @@ class ReservationController extends Controller
                 ->with('error', 'Sorry, this time slot is already full. Please choose another time.');
         }
 
-        // ✅ Save if available
-        Reservation::create($validated);
+        Reservation::create([
+            'user_id'      => Auth::id(),
+            'name'         => $validated['name'],
+            'email'        => $validated['email'],
+            'address'      => $validated['address'],
+            'phone_number' => $validated['phone_number'],
+            'guest'        => $validated['guest'],
+            'date'         => $validated['date'],
+            'time'         => $validated['time'],
+            'desc'         => $validated['desc'] ?? null,
+            'payment_status' => 'unpaid',
+            'reservation_status' => 'ongoing',
+        ]);
 
         return back()->with('success', 'Reservation successfully submitted!');
     }
 
     public function checkAvailability(Request $request)
     {
-        $maxGuests = 5;
+        $maxGuests = 10;
 
         $currentGuests = Reservation::where('date', $request->date)
             ->where('time', $request->time)
@@ -110,5 +78,51 @@ class ReservationController extends Controller
             'available' => $currentGuests < $maxGuests,
             'remaining' => $maxGuests - $currentGuests
         ]);
+    }
+    public function markPaid($id)
+    {
+        Reservation::findOrFail($id)->update([
+            'payment_status' => 'paid'
+        ]);
+
+        return back()->with('success', 'Payment marked as paid');
+    }
+
+    public function finish(Reservation $reservation)
+    {
+        $reservation->update([
+            'reservation_status' => 'finished'
+        ]);
+
+        return redirect()->route('admin.reservations')
+            ->with('success', 'Reservation finished');
+    }
+
+    public function togglePayment(Reservation $reservation)
+    {
+        $reservation->update([
+            'payment_status' =>
+                $reservation->payment_status === 'paid' ? 'unpaid' : 'paid'
+        ]);
+
+        return back()->with('success', 'Payment updated');
+    }
+
+    public function history()
+    {
+        $reservations = Reservation::where('reservation_status', 'finished')
+            ->orderBy('date', 'desc')
+            ->get();
+
+        return view('admin.reservations.history', compact('reservations'));
+    }
+
+    public function undo(Reservation $reservation)
+    {
+        $reservation->update([
+            'reservation_status' => 'ongoing'
+        ]);
+
+        return back()->with('success', 'Reservation restored');
     }
 }

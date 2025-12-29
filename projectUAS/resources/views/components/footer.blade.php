@@ -52,4 +52,5 @@
             </div>
         </div>
     </footer>
+        <script src="https://kit.fontawesome.com/c8a515c247.js" crossorigin="anonymous"></script>
     {{-- Akhir Footer --}}
